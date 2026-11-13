@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Pausewood Privacy Policy
+title: "Pausewood Privacy Policy"
 ---
 
 # Privacy Policy

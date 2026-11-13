@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Delete your Pausewood account
+title: "Delete your Pausewood account"
 ---
 
 # Delete your Pausewood account

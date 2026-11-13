@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Pausewood Terms and Conditions
+title: "Pausewood Terms and Conditions"
 ---
 
 # Terms and Conditions

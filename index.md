@@ -12,3 +12,9 @@ Legal information for the Pausewood mobile app, operated by Soluraize Studio.
 * [Delete your account](delete-account.html)
 
 Contact: soluraizestudio@gmail.com
+
+## На русском
+
+* [Политика конфиденциальности](ru/privacy-policy.html)
+* [Условия использования](ru/terms-and-conditions.html)
+* [Удаление аккаунта](ru/delete-account.html)
