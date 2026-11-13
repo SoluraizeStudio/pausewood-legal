@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Pausewood</title>
+  <style>
+    :root { color-scheme: light; }
+    body {
+      margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: #DCE7E0; color: #1F3A33;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    main {
+      width: calc(100% - 32px); max-width: 440px; box-sizing: border-box;
+      background: #FFFDF6; border-radius: 20px; padding: 32px 24px; text-align: center;
+      box-shadow: 0 3px 0 #B9CFC4;
+    }
+    h1 { margin: 0 0 8px; font-size: 26px; color: #2F5A4E; }
+    p { margin: 8px 0; line-height: 1.45; }
+    .button {
+      display: block; margin: 24px 0 8px; padding: 16px; border-radius: 16px;
+      background: #2F5A4E; color: #fff; text-decoration: none; font-weight: 700; font-size: 17px;
+      box-shadow: 0 3px 0 #1F3A33;
+    }
+    .hint, .en { color: #5F7A70; font-size: 14px; }
+    .en { margin-top: 24px; padding-top: 16px; border-top: 1px dashed #B9CFC4; }
+    .error { color: #A3431F; }
+    [hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 id="title-ru">Готово</h1>
+    <p id="text-ru">Нажмите кнопку, чтобы вернуться в Pausewood и продолжить.</p>
+    <a id="open" class="button" href="pausewood://auth-callback">Открыть Pausewood</a>
+    <p class="hint" id="hint-ru">Если приложение не открылось, вернитесь на главный экран телефона и откройте Pausewood вручную.</p>
+
+    <div class="en">
+      <p id="text-en">Tap the button to return to Pausewood and continue.</p>
+      <p id="hint-en">If the app did not open, go back to your phone's home screen and open Pausewood yourself.</p>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      // Код или токены приходят в адресе страницы; передаём их приложению как есть.
+      var tail = window.location.search + window.location.hash;
+      var link = "pausewood://auth-callback" + tail;
+      var open = document.getElementById("open");
+      open.setAttribute("href", link);
+
+      // Ссылка устарела или уже использована: сообщаем и не зовём приложение.
+      if (/[?#&]error=/.test(tail)) {
+        document.getElementById("title-ru").textContent = "Ссылка не сработала";
+        document.getElementById("text-ru").textContent =
+          "Ссылка устарела или уже использована. Запросите новое письмо в приложении.";
+        document.getElementById("text-ru").className = "error";
+        document.getElementById("text-en").textContent =
+          "The link has expired or was already used. Request a new email in the app.";
+        document.getElementById("text-en").className = "error";
+        document.getElementById("hint-ru").hidden = true;
+        document.getElementById("hint-en").hidden = true;
+        open.textContent = "Открыть Pausewood / Open Pausewood";
+        open.removeAttribute("href");
+        return;
+      }
+
+      // Браузер часто блокирует открытие приложения без нажатия; если не заблокирует,
+      // приложение откроется само, иначе остаётся кнопка.
+      window.setTimeout(function () { window.location.href = link; }, 700);
+    })();
+  </script>
+</body>
+</html>
